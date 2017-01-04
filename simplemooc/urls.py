@@ -6,8 +6,8 @@ from django.conf.urls.static import static
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^', include('core.urls', namespace='core')),
-    url(r'^cursos/', include('courses.urls', namespace='courses')),
+    url(r'^', include('simplemooc.core.urls', namespace='core')),
+    url(r'^cursos/', include('simplemooc.courses.urls', namespace='courses')),
     url(r'^admin/', include(admin.site.urls)),
 ]
 
