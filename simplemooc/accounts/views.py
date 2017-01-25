@@ -1,9 +1,15 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
-from .forms import RegisterForm
+from .forms import RegisterForm, EditAccountForm
+
+@login_required
+def dashboard(request):
+    template_name = 'accounts/dashboard.html'
+    return render(request, template_name)
 
 def register (request):
     template_name = 'accounts/register.html'
@@ -22,3 +28,11 @@ def register (request):
         'form': form
     }
     return render(request, template_name, context)
+
+@login_required
+def edit(request):
+    template_name = 'accounts/edit.html'
+    form = EditAccountForm()
+    context = {}
+    context['form'] = form
+    return render(request, template_name,context)
